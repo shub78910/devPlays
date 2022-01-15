@@ -1,0 +1,4 @@
+.historyWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}

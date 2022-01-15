@@ -1,0 +1,12 @@
+.loginFormWrapper {
+  margin: 6rem auto auto 15rem;
+}
+
+@media only screen and (max-width: 550px) {
+  .loginFormWrapper {
+    margin: 6rem 0.5rem auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,23 @@
+.sidebarWrapper {
+  background-color: #191921;
+  width: 15rem;
+  height: 38rem;
+  position: fixed;
+  margin-top: 4.7rem;
+}
+.sidebarWrapper div {
+  padding-top: 2rem;
+  list-style: none;
+}
+.sidebarWrapper div h4 {
+  margin: 1rem 0rem;
+  padding: 0.7rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.sidebarWrapper div h4:hover {
+  background-color: #23232e;
+}
+.sidebarWrapper div h4 i {
+  margin-right: 0.5rem;
+}

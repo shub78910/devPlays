@@ -1,0 +1,24 @@
+.myProfileWrapper {
+  width: 100%;
+}
+.myProfileWrapper div {
+  margin: 1rem;
+}
+.logoutBtn {
+  margin: 1rem;
+  width: 100%;
+}
+.profileLists ul {
+  padding-top: 2rem;
+  list-style: none;
+}
+.profileLists ul li {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.profileLists ul li i {
+  margin-left: -1.2rem;
+  margin-right: 0.6rem;
+  margin-bottom: 2rem;
+}

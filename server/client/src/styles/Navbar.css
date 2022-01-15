@@ -1,0 +1,48 @@
+.navbarWrapper {
+  display: flex;
+  justify-content: space-around;
+  padding: 1.2rem 0.2rem 0.2rem 0.2rem;
+  background-color: #191921 !important;
+  position: fixed;
+  width: 100%;
+}
+.searchInput {
+  width: 50%;
+}
+.hero {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .navbarWrapper {
+    justify-content: flex-start;
+    padding: 1.2rem 0.2rem 0.2rem 0.2rem;
+  }
+
+  .searchInput {
+    width: 90%;
+  }
+
+  .hero {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  .bottomNavBarWrapper {
+    background-color: #191921 !important;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .bottomNavBarWrapper div {
+    margin: 0.5rem;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+  }
+}
