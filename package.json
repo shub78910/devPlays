@@ -1,15 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "data.js",
+  "description": "video library MERN app",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js --exec babel-node --presets babel-preset-env",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "npm start --prefix client",
-    "heroku-postbuild": " npm install --prefix client && npm run build --prefix client"
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
