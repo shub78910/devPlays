@@ -6,7 +6,7 @@ import { User } from "../models/userSchema.js";
 import mongoose from "mongoose";
 
 //get all videos
-router.get("/", async (req, res) => {
+router.get("/home", async (req, res) => {
   try {
     const videos = await Video.find();
     if (videos) {

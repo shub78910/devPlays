@@ -54,7 +54,7 @@ export const VideoState = (props) => {
 
   const getVideos = async () => {
     try {
-      const videos = await axios.get("http://localhost:5000/");
+      const videos = await axios.get("http://localhost:5000/home");
       setFetchedVids(videos.data.videos);
       setIsShowErrorMsg(false);
       setChange(!change);
