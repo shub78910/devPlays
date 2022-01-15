@@ -23,7 +23,7 @@ app.use("/auth", userRoute);
 const CONNECTION_URL = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () =>
+app.listen(PORT, () =>
   console.log(`Server Running on Port: http://localhost:${PORT}`)
 );
 
