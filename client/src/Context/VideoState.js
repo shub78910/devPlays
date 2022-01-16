@@ -15,10 +15,7 @@ export const VideoState = (props) => {
 
   const signUp = async (form) => {
     try {
-      const userData = await axios.post(
-        "http://localhost:5000/auth/register",
-        form
-      );
+      const userData = await axios.post("/auth/register", form);
       setIsShowErrorMsg(false);
       return userData;
     } catch (error) {
@@ -29,10 +26,7 @@ export const VideoState = (props) => {
 
   const signIn = async (form) => {
     try {
-      const userData = await axios.post(
-        "http://localhost:5000/auth/login",
-        form
-      );
+      const userData = await axios.post("/auth/login", form);
       if (userData.status === 201) {
         localStorage.setItem("jwttoken", JSON.stringify(userData.data.token));
         localStorage.setItem(
@@ -54,7 +48,7 @@ export const VideoState = (props) => {
 
   const getVideos = async () => {
     try {
-      const videos = await axios.get("http://localhost:5000/home");
+      const videos = await axios.get("/home");
       setFetchedVids(videos.data.videos);
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -73,9 +67,7 @@ export const VideoState = (props) => {
     console.log(searchedText);
     if (searchedText !== "") {
       try {
-        const videos = await axios.get(
-          `http://localhost:5000/search/${searchedText}`
-        );
+        const videos = await axios.get(`/search/${searchedText}`);
         setIsShowErrorMsg(false);
         setChange(!change);
         return videos;
@@ -91,7 +83,7 @@ export const VideoState = (props) => {
   const getUser = async (userId) => {
     if (userId !== null) {
       try {
-        const user = await axios.get(`http://localhost:5000/user/${userId}`);
+        const user = await axios.get(`/user/${userId}`);
         setUserFromDb(user);
         setIsShowErrorMsg(false);
         return user;
@@ -111,9 +103,7 @@ export const VideoState = (props) => {
   //like a video
   const likeVideos = async (videoId) => {
     try {
-      const likedVideo = await axios.put(
-        `http://localhost:5000/video/like/${videoId}/${userId}`
-      );
+      const likedVideo = await axios.put(`/video/like/${videoId}/${userId}`);
       setIsShowErrorMsg(false);
       setChange(!change);
       return likedVideo;
@@ -128,7 +118,7 @@ export const VideoState = (props) => {
   const addToWatchLaterVideo = async (videoId) => {
     try {
       const addedToWatchLaterVideo = await axios.put(
-        `http://localhost:5000/video/watchLater/${videoId}/${userId}`
+        `/video/watchLater/${videoId}/${userId}`
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -145,7 +135,7 @@ export const VideoState = (props) => {
   const makeNewPlaylist = async (playlistName) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/video/newPlayList/${playlistName}/${userId}`
+        `/video/newPlayList/${playlistName}/${userId}`
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -161,7 +151,7 @@ export const VideoState = (props) => {
   const addVideoToPlaylist = async (playListName, videoId) => {
     try {
       const addedToPlaylistVideo = await axios.put(
-        `http://localhost:5000/video/playlist/${playListName}/${videoId}/${userId}`
+        `/video/playlist/${playListName}/${videoId}/${userId}`
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -177,7 +167,7 @@ export const VideoState = (props) => {
   const addToHistory = async (videoId) => {
     try {
       const watchedVideo = await axios.put(
-        `http://localhost:5000/video/history/${videoId}/${userId}`
+        `/video/history/${videoId}/${userId}`
       );
       setIsShowErrorMsg(false);
       setChange(!change);
