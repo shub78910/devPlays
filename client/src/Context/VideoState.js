@@ -13,9 +13,13 @@ export const VideoState = (props) => {
 
   const jwttoken = JSON.parse(localStorage.getItem("jwttoken"));
 
+  const [loader, setLoader] = useState(false);
+
   const signUp = async (form) => {
     try {
+      setLoader(true);
       const userData = await axios.post("/auth/register", form);
+      setLoader(false);
       setIsShowErrorMsg(false);
       return userData;
     } catch (error) {
@@ -26,7 +30,9 @@ export const VideoState = (props) => {
 
   const signIn = async (form) => {
     try {
+      setLoader(true);
       const userData = await axios.post("/auth/login", form);
+      setLoader(false);
       if (userData.status === 201) {
         localStorage.setItem("jwttoken", JSON.stringify(userData.data.token));
         localStorage.setItem(
@@ -48,7 +54,9 @@ export const VideoState = (props) => {
 
   const getVideos = async () => {
     try {
+      setLoader(true);
       const videos = await axios.get("/home");
+      setLoader(false);
       setFetchedVids(videos.data.videos);
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -64,10 +72,11 @@ export const VideoState = (props) => {
   };
   //comment
   const searchVideosFromDb = async (searchedText) => {
-    console.log(searchedText);
     if (searchedText !== "") {
       try {
+        setLoader(true);
         const videos = await axios.get(`/search/${searchedText}`);
+        setLoader(false);
         setIsShowErrorMsg(false);
         setChange(!change);
         return videos;
@@ -203,6 +212,7 @@ export const VideoState = (props) => {
         searchedVideos,
         setSearchedVideos,
         searchVideosFromDb,
+        loader,
       }}
     >
       {props.children}

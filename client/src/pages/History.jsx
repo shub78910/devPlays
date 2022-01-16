@@ -18,6 +18,7 @@ const History = () => {
       getUser(userId);
     }
   }, [change]);
+
   return (
     <>
       {userFromDb?.data.user.history.length === 0 ? (
@@ -28,6 +29,7 @@ const History = () => {
         />
       ) : (
         <div className="mainPage">
+          <h1 style={{ textAlign: "center" }}>History</h1>
           {isShowErrorMsg ? (
             <h1>There is an error, please try after sometime.</h1>
           ) : (

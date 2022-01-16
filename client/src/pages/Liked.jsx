@@ -5,9 +5,18 @@ import VideoGrid from "../components/video/VideoGrid";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmptyList from "../components/EmptyList";
+import { BallTriangle } from "react-loader-spinner";
+
 const Liked = () => {
-  const { getUser, userFromDb, userId, jwttoken, isShowErrorMsg, change } =
-    useContext(videoContext);
+  const {
+    getUser,
+    userFromDb,
+    userId,
+    jwttoken,
+    isShowErrorMsg,
+    change,
+    loader,
+  } = useContext(videoContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,24 +29,33 @@ const Liked = () => {
 
   return (
     <>
-      {userFromDb?.data.user.likedVideos.length === 0 ? (
-        <EmptyList message={"You haven't liked any videos yet."} />
+      {loader ? (
+        <div className="loaderWrapper">
+          <BallTriangle color="white" />
+        </div>
       ) : (
-        <div className="mainPage">
-          {isShowErrorMsg ? (
-            <h1>There is an error, please try after sometime.</h1>
+        <>
+          {userFromDb?.data.user.likedVideos.length === 0 ? (
+            <EmptyList message={"You haven't liked any videos yet."} />
           ) : (
-            <div className="videoListWrapper">
-              {userFromDb?.data.user.likedVideos.map((video) => {
-                return (
-                  <div key={video._id}>
-                    <VideoGrid video={video} />
-                  </div>
-                );
-              })}
+            <div className="mainPage">
+              <h1 style={{ textAlign: "center" }}>Liked videos</h1>
+              {isShowErrorMsg ? (
+                <h1>There is an error, please try after sometime.</h1>
+              ) : (
+                <div className="videoListWrapper">
+                  {userFromDb?.data.user.likedVideos.map((video) => {
+                    return (
+                      <div key={video._id}>
+                        <VideoGrid video={video} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
-        </div>
+        </>
       )}
     </>
   );

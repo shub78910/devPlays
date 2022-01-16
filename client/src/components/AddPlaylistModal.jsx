@@ -30,9 +30,11 @@ function AddPlaylistModal(props) {
   };
 
   const createNewPlaylist = async () => {
-    let response = await makeNewPlaylist(newPlaylistName);
-    getUser(userId);
-    toast.info(response.data?.message);
+    if (newPlaylistName !== "") {
+      let response = await makeNewPlaylist(newPlaylistName);
+      getUser(userId);
+      toast.info(response.data?.message);
+    }
   };
 
   function isChecked(playlistName) {

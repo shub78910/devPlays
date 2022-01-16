@@ -5,6 +5,8 @@ import VideoGrid from "../components/video/VideoGrid";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmptyList from "../components/EmptyList";
+import { BallTriangle } from "react-loader-spinner";
+
 const WatchLater = () => {
   const {
     getUser,
@@ -14,6 +16,7 @@ const WatchLater = () => {
     isShowErrorMsg,
     setIsShowErrorMsg,
     change,
+    loader,
   } = useContext(videoContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,26 +27,35 @@ const WatchLater = () => {
   }, [change]);
   return (
     <>
-      {userFromDb?.data.user.watchlist.length === 0 ? (
-        <EmptyList
-          message={"You haven't added anything to your watchlist yet."}
-        />
+      {loader ? (
+        <div className="loaderWrapper">
+          <BallTriangle color="white" />
+        </div>
       ) : (
-        <div className="mainPage">
-          {isShowErrorMsg ? (
-            <h1>There is an error, please try after sometime.</h1>
+        <>
+          {userFromDb?.data.user.watchlist.length === 0 ? (
+            <EmptyList
+              message={"You haven't added anything to your watchlist yet."}
+            />
           ) : (
-            <div className="videoListWrapper">
-              {userFromDb?.data.user.watchlist.map((video) => {
-                return (
-                  <div key={video._id}>
-                    <VideoGrid video={video} />
-                  </div>
-                );
-              })}
+            <div className="mainPage">
+              <h1 style={{ textAlign: "center" }}>Watchlist</h1>
+              {isShowErrorMsg ? (
+                <h1>There is an error, please try after sometime.</h1>
+              ) : (
+                <div className="videoListWrapper">
+                  {userFromDb?.data.user.watchlist.map((video) => {
+                    return (
+                      <div key={video._id}>
+                        <VideoGrid video={video} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
-        </div>
+        </>
       )}
     </>
   );

@@ -28,6 +28,7 @@ const Profile = () => {
     <>
       {jwttoken && (
         <div className="mainPage myProfileWrapper">
+          <h1>Your Profile</h1>
           <div>
             <span>Name: </span>
             <strong>{userFromDb?.data.user.fullName}</strong>
@@ -40,7 +41,7 @@ const Profile = () => {
           <div className="profileLists">
             <ul>
               <li className="LinkTagDefault">
-                <Link className="LinkTagDefault" to="/playlist">
+                <Link className="LinkTagDefault" to="/playlists">
                   <i className="fa fa-list "></i>
                   <span>Playlists</span>
                 </Link>

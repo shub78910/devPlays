@@ -5,6 +5,7 @@
   background-color: #191921 !important;
   position: fixed;
   width: 100%;
+  z-index: 5;
 }
 .searchInput {
   width: 50%;

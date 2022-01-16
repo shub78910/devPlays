@@ -27,30 +27,32 @@ const VideoGrid = ({ video }) => {
   };
 
   return (
-    <div className="LinkTagDefault">
-      <Link
-        className="LinkTagDefault"
-        to={{
-          pathname: `/video/${video._id}`,
-          state: { fromDashboard: true },
-        }}
-      >
-        <div className="videoGrid" onClick={addVideoToHistory}>
-          <img src={`https://i.ytimg.com/vi/${video._id}/0.jpg`} />
-          <strong className="mt-3">{video.name}</strong>
-        </div>
-      </Link>
-      <div className="d-flex justify-content-between align-items-center mt-4 vidDetails">
-        <div>
-          <small>
-            {video.category?.map((category) => (
-              <span key={category}>#{category} </span>
-            ))}
-          </small>
-          <h6>{video.date}</h6>
-        </div>
-        <div role="button" onClick={addToWatchLater}>
-          <i className="fa fa-clock-o fa-2x "></i>
+    <div className="videoGridWrapper">
+      <div className="LinkTagDefault ">
+        <Link
+          className="LinkTagDefault"
+          to={{
+            pathname: `/video/${video._id}`,
+            state: { fromDashboard: true },
+          }}
+        >
+          <div className="videoGrid" onClick={addVideoToHistory}>
+            <img src={`https://i.ytimg.com/vi/${video._id}/0.jpg`} />
+            <strong className="mt-3">{video.name}</strong>
+          </div>
+        </Link>
+        <div className="d-flex justify-content-between align-items-center mt-4 vidDetails">
+          <div>
+            <small>
+              {video.category?.map((category) => (
+                <span key={category}>#{category} </span>
+              ))}
+            </small>
+            <h6>{video.date}</h6>
+          </div>
+          <div role="button" onClick={addToWatchLater}>
+            <i className="fa fa-clock-o fa-2x "></i>
+          </div>
         </div>
       </div>
       <ToastContainer

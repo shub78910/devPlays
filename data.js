@@ -1,10 +1,10 @@
 const videos = [
   {
-    _id: "3teflb1QNN4",
-    name: "What Can You Do Without a Brain?",
-    creator: "Vsauce",
-    date: "Oct 25, 2012",
-    category: ["Science", "Learning"],
+    _id: "X2BYmmTI04I",
+    name: "5 Seconds of Summer - She Looks So Perfect (Official Video)",
+    creator: "5SOS",
+    date: "Feb 25, 2014",
+    category: ["Music", "5SOS"],
   },
 
   {
@@ -61,6 +61,13 @@ const videos = [
     name: "How Much of the Earth Can You See at Once?",
     creator: "Vsauce",
     date: "Jul 17, 2017",
+    category: ["Science", "Learning"],
+  },
+  {
+    _id: "3teflb1QNN4",
+    name: "What Can You Do Without a Brain?",
+    creator: "Vsauce",
+    date: "Oct 25, 2012",
     category: ["Science", "Learning"],
   },
   {

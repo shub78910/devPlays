@@ -5,6 +5,8 @@ import VideoGrid from "../components/video/VideoGrid";
 import "../styles/video.css";
 import videoContext from "../Context/videoContext";
 import { useNavigate } from "react-router-dom";
+import { BallTriangle } from "react-loader-spinner";
+
 const Home = () => {
   const {
     getVideos,
@@ -14,6 +16,7 @@ const Home = () => {
     userId,
     isShowErrorMsg,
     setIsShowErrorMsg,
+    loader,
   } = useContext(videoContext);
 
   const headers = {
@@ -30,21 +33,29 @@ const Home = () => {
 
   return (
     <>
-      <div className="mainPage">
-        {isShowErrorMsg ? (
-          <h1>There is an error, please try after sometime.</h1>
-        ) : (
-          <div className="videoListWrapper">
-            {fetchedVids.map((video) => {
-              return (
-                <div key={video._id}>
-                  <VideoGrid video={video} />
-                </div>
-              );
-            })}
+      {loader ? (
+        <div className="loaderWrapper">
+          <BallTriangle color="white" />
+        </div>
+      ) : (
+        <>
+          <div className="mainPage">
+            {isShowErrorMsg ? (
+              <h1>There is an error, please try after sometime.</h1>
+            ) : (
+              <div className="videoListWrapper">
+                {fetchedVids.map((video) => {
+                  return (
+                    <div key={video._id}>
+                      <VideoGrid video={video} />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 };

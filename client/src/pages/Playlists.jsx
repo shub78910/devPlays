@@ -34,6 +34,7 @@ const Playlist = () => {
         <EmptyList message={"You don't have any playlists yet."} />
       ) : (
         <div className="mainPage">
+          <h1 style={{ textAlign: "center" }}>Your playlists</h1>
           {isShowErrorMsg ? (
             <h1>There is an error, please try after sometime.</h1>
           ) : (

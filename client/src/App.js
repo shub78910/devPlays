@@ -17,6 +17,8 @@ import Page404 from "./pages/Page404";
 import SearchedVideos from "./pages/SearchedVideos";
 
 import "react-toastify/dist/ReactToastify.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import BottomNavBar from "./components/BottomNavBar";
 
 function App() {

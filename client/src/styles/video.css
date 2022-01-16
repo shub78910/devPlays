@@ -15,6 +15,10 @@
   height: 20rem;
   cursor: pointer;
 }
+
+.videoGridWrapper :hover {
+  transform: scale(1.02);
+}
 .videoGrid img {
   border-radius: 0.5rem;
   width: 20rem;

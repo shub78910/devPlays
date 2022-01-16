@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
+import { BallTriangle } from "react-loader-spinner";
+
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import videoContext from "../Context/videoContext";
@@ -11,7 +13,7 @@ const SignUp = () => {
   const [form, setForm] = useState({});
   const [isSignup, setIsSignup] = useState(false);
   const navigate = useNavigate();
-  const { signIn, signUp, jwttoken } = useContext(videoContext);
+  const { signIn, signUp, jwttoken, loader } = useContext(videoContext);
 
   useEffect(() => {
     if (jwttoken && jwttoken !== "undefined") navigate("/");
@@ -71,91 +73,98 @@ const SignUp = () => {
   return (
     <div className="mainPage">
       <div className="loginFormWrapper">
-        {isSignup ? (
-          <>
-            <Form onSubmit={handleSubmit}>
-              <h2>SignUp</h2>
-              <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Full Name</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  className="loginInput"
-                  name="fullName"
-                  type="name"
-                  placeholder="Enter full name"
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  className="loginInput"
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  className="loginInput"
-                  name="pswd"
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Group>
-              <div className="d-grid gap-2">
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </div>
-            </Form>
-          </>
+        {loader ? (
+          <div className="loaderWrapper">
+            <BallTriangle color="white" />
+          </div>
         ) : (
           <>
-            <Form onSubmit={handleSubmit}>
-              <h2>SignIn</h2>
+            {isSignup ? (
+              <>
+                <Form onSubmit={handleSubmit}>
+                  <h2>SignUp</h2>
+                  <Form.Group className="mb-3" controlId="name">
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control
+                      onChange={handleChange}
+                      className="loginInput"
+                      name="fullName"
+                      type="name"
+                      placeholder="Enter full name"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      onChange={handleChange}
+                      className="loginInput"
+                      name="email"
+                      type="email"
+                      placeholder="Enter email"
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  className="loginInput"
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      onChange={handleChange}
+                      className="loginInput"
+                      name="pswd"
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </Form.Group>
+                  <div className="d-grid gap-2">
+                    <Button variant="primary" type="submit">
+                      Submit
+                    </Button>
+                  </div>
+                </Form>
+              </>
+            ) : (
+              <>
+                <Form onSubmit={handleSubmit}>
+                  <h2>SignIn</h2>
 
-              <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  className="loginInput"
-                  name="pswd"
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Group>
+                  <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      onChange={handleChange}
+                      className="loginInput"
+                      name="email"
+                      type="email"
+                      placeholder="Enter email"
+                    />
+                  </Form.Group>
 
-              <div className="d-grid gap-2">
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </div>
-            </Form>
+                  <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      onChange={handleChange}
+                      className="loginInput"
+                      name="pswd"
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </Form.Group>
+
+                  <div className="d-grid gap-2">
+                    <Button variant="primary" type="submit">
+                      Submit
+                    </Button>
+                  </div>
+                </Form>
+              </>
+            )}
+            <div style={{ textAlign: "right" }}>
+              <Button className="mt-3 " onClick={switchMode}>
+                {isSignup
+                  ? "Already have an account? Sign in"
+                  : "Don't have an account? Sign Up"}
+              </Button>
+            </div>
           </>
         )}
-
-        <div style={{ textAlign: "right" }}>
-          <Button className="mt-3 " onClick={switchMode}>
-            {isSignup
-              ? "Already have an account? Sign in"
-              : "Don't have an account? Sign Up"}
-          </Button>
-        </div>
       </div>
       <ToastContainer
         position="bottom-right"
