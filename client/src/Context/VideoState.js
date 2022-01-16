@@ -68,7 +68,7 @@ export const VideoState = (props) => {
       };
     }
   };
-
+  //comment
   const searchVideosFromDb = async (searchedText) => {
     console.log(searchedText);
     if (searchedText !== "") {
