@@ -7,7 +7,7 @@
       "target": "http://localhost:5000/"
     },
     "/access/.*(_get)": {
-      "target": "https://img.youtube.com/"
+      "target": "http://img.youtube.com/"
     }
   },
   "dependencies": {
