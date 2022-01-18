@@ -7,7 +7,7 @@
       "target": "http://localhost:5000/"
     },
     "/access/.*(_get)": {
-      "target": "http://i.ytimg.com/"
+      "target": "http://i.ytimg.com/vi/"
     }
   },
   "dependencies": {
