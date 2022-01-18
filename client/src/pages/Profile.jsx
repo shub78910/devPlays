@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import videoContext from "../Context/videoContext";
 import "../styles/profile.css";
+import youtubeIcon from "../assets/youtube.png";
 
 import { Button } from "react-bootstrap";
 
@@ -28,7 +29,7 @@ const Profile = () => {
     <>
       {jwttoken && (
         <div className="mainPage myProfileWrapper">
-          <h1>Your Profile</h1>
+          <h1 style={{ textAlign: "center" }}>Your Profile</h1>
           <div>
             <span>Name: </span>
             <strong>{userFromDb?.data.user.fullName}</strong>
@@ -66,6 +67,13 @@ const Profile = () => {
               </li>
             </ul>
           </div>
+
+          <Link to="/video/addNewVideo">
+            <Button variant="dark" className="logoutBtn">
+              Add a new YouTube video{" "}
+              <img src={youtubeIcon} width={30} height={30} className="mx-2" />
+            </Button>
+          </Link>
 
           <Button className="logoutBtn" onClick={logout}>
             Logout

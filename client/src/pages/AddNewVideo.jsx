@@ -18,10 +18,6 @@ const AddNewVideo = () => {
   const [form, setForm] = useState({ userName: userName });
 
   useEffect(() => {
-    alert("Please add valid data by copying and pasting from youtube");
-  }, []);
-
-  useEffect(() => {
     if (!jwttoken) navigate("/login");
   }, []);
 
@@ -61,7 +57,7 @@ const AddNewVideo = () => {
     <>
       <div className="mainPage">
         <h1 style={{ textAlign: "center" }}>Add new video</h1>
-        <Form onSubmit={handleSubmit}>
+        <Form className="newVideoFormWrapper" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Video title</Form.Label>
             <Form.Control
