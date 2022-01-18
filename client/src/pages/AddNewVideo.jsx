@@ -10,7 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 //user should not be able to add any random id which is not from yt.
 
 const AddNewVideo = () => {
-  const { jwttoken, addNewVideo, userName } = useContext(videoContext);
+  const { jwttoken, addNewVideo, userName, validateVideoId } =
+    useContext(videoContext);
   const navigate = useNavigate();
 
   //just to know who posted which video, the initial value of the form will be the username property.
@@ -36,12 +37,13 @@ const AddNewVideo = () => {
     e.preventDefault();
 
     //validating if the video is legit or no.
-    const url = `https://i.ytimg.com/vi/${form._id}/0.jpg`;
-    const { status } = await fetch(url);
-    if (status === 404) {
+    const isVideoValidStatus = await validateVideoId(form._id);
+    console.log(isVideoValidStatus);
+    if (isVideoValidStatus === 404) {
       toast.error("Invalid video ID");
       return;
     }
+    //arghhh corsss
 
     let response = await addNewVideo(form);
     if (response.status === 200) {

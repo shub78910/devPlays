@@ -52,6 +52,14 @@ export const VideoState = (props) => {
     }
   };
 
+  //validating the video id
+
+  const validateVideoId = async (_id) => {
+    const url = `http://i.ytimg.com/vi/${_id}/0.jpg`;
+    const { status } = await fetch(url);
+    return status;
+  };
+
   //add new video
 
   const addNewVideo = async (newVidDetails) => {
@@ -258,6 +266,7 @@ export const VideoState = (props) => {
       value={{
         signUp,
         signIn,
+        validateVideoId,
         addNewVideo,
         getVideos,
         getVideoBasedOnId,

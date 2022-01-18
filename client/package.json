@@ -4,10 +4,10 @@
   "private": true,
   "proxy": {
     "/report/.*(_get)": {
-      "target": "http://localhost:5000/"
+      "target": "https://localhost:5000/"
     },
     "/access/.*(_get)": {
-      "target": "https://i.ytimg.com/vi/"
+      "target": "http://i.ytimg.com/vi/"
     }
   },
   "dependencies": {
