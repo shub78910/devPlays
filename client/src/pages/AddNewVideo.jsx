@@ -36,7 +36,7 @@ const AddNewVideo = () => {
     e.preventDefault();
 
     //validating if the video is legit or no.
-    const url = `http://i.ytimg.com/vi/${form._id}/0.jpg`;
+    const url = `https://i.ytimg.com/vi/${form._id}/0.jpg`;
     const { status } = await fetch(url);
     if (status === 404) {
       toast.error("Invalid video ID");
