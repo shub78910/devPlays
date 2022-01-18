@@ -29,7 +29,7 @@
   background-color: #141319;
   display: flex;
   justify-content: space-between;
-  width: 40rem;
+  width: 50rem;
   border: 0.02rem white solid;
   border-radius: 1rem;
   margin-top: 1rem;
@@ -44,5 +44,6 @@
 @media only screen and (max-width: 900px) {
   .singleComment {
     margin: 0.5rem auto auto auto;
+    width: 100%;
   }
 }
