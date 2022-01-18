@@ -36,21 +36,25 @@ const AddNewVideo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //validating if the video is legit or no.
-    const isVideoValidStatus = await validateVideoId(form._id);
-    console.log(isVideoValidStatus);
-    if (isVideoValidStatus === 404) {
-      toast.error("Invalid video ID");
-      return;
-    }
-    //arghhh corsss
+    if (form._id) {
+      console.log(form._id);
+      // //validating if the video is legit or no.
 
-    let response = await addNewVideo(form);
-    if (response.status === 200) {
-      setForm({ userName: userName });
-      toast.success("Video added succesfully");
-    } else {
-      toast.info(response.data.message);
+      // const isVideoValidStatus = await validateVideoId(form._id);
+      // console.log(isVideoValidStatus);
+      // if (isVideoValidStatus === 404) {
+      //   toast.error("Invalid video ID");
+      //   return;
+      // }
+      // //arghhh corsss
+
+      let response = await addNewVideo(form);
+      if (response.status === 200) {
+        setForm({ userName: userName });
+        toast.success("Video added succesfully");
+      } else {
+        toast.info(response.data.message);
+      }
     }
   };
 

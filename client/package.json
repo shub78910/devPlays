@@ -2,14 +2,7 @@
   "name": "videolib",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/report/.*(_get)": {
-      "target": "https://localhost:5000/"
-    },
-    "/access/.*(_get)": {
-      "target": "https://i.ytimg.com/vi/"
-    }
-  },
+  "proxy": "https://localhost:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
