@@ -53,15 +53,13 @@ function AddPlaylistModal(props) {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <div className="modalWrapper">
         <Modal.Body>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between newPlaylistWrapper">
             <input
               placeholder="Add playlist name"
               type="text"
               onChange={(e) => changeHandler(e)}
             />
-            <button onClick={createNewPlaylist} className="">
-              Create new playlist
-            </button>
+            <button onClick={createNewPlaylist}>+</button>
           </div>
           <br />
 

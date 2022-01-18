@@ -25,7 +25,6 @@ const Liked = () => {
       getUser(userId);
     }
   }, [change]);
-  console.log(userFromDb);
 
   return (
     <>

@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import BottomNavBar from "./components/BottomNavBar";
+import AddNewVideo from "./pages/AddNewVideo";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/video/:videoId" element={<VideoPlayer />} />
+              <Route path="/video/addNewVideo" element={<AddNewVideo />} />
               <Route path="/login" element={<Login />} />
               <Route path="/liked" element={<Liked />} />
               <Route path="/profile" element={<Profile />} />

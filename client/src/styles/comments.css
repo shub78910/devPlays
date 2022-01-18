@@ -1,0 +1,47 @@
+.commentsWrapper {
+  margin-top: 3rem;
+}
+
+.commentsWrapper textarea {
+  width: 90%;
+  background-color: #191921;
+  color: white;
+  padding: 0.5rem;
+}
+.commentsWrapper button {
+  /* font-size: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 2rem;
+  font-weight: 900;
+  border: none;
+  background-color: rgb(113, 113, 113);
+  color: white;
+  margin-left: 0.5rem;
+}
+.renderingComments {
+  margin-top: 3rem;
+}
+.singleComment {
+  padding: 0.5rem;
+  background-color: #141319;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  border: 0.02rem white solid;
+  border-radius: 1rem;
+}
+.singleComment strong {
+  font-size: 1.2rem;
+}
+.singleComment i {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .singleComment {
+    margin: 0.5rem auto auto auto;
+  }
+}

@@ -12,6 +12,7 @@ import { BallTriangle } from "react-loader-spinner";
 
 import { ToastContainer, toast } from "react-toastify";
 import AddPlaylistModal from "../AddPlaylistModal";
+import Comments from "../Comments";
 
 const VideoPlayer = () => {
   const { videoId } = useParams();
@@ -29,6 +30,7 @@ const VideoPlayer = () => {
   const {
     jwttoken,
     getVideos,
+    getVideoBasedOnId,
     likeVideos,
     addToWatchLaterVideo,
     userFromDb,
@@ -38,11 +40,8 @@ const VideoPlayer = () => {
   useEffect(async () => {
     if (!jwttoken) navigate("/login");
     else {
-      const response = await getVideos();
-
-      setCurrVideo(
-        response?.data?.videos?.find((video) => video._id === videoId)
-      );
+      const response = await getVideoBasedOnId(videoId);
+      setCurrVideo(response?.data.video);
 
       if (isAddedToWatchLaterByUser !== undefined) setIsAddToWatchLater(true);
       if (isLikedByUser !== undefined) setIsLikeVideo(true);
@@ -153,7 +152,9 @@ const VideoPlayer = () => {
                 <button
                   onClick={() => {
                     toast.success("Video link copied to clipboard.");
-                    navigator.clipboard.writeText(`localhost:3000${pathname}`);
+                    navigator.clipboard.writeText(
+                      `devplays-shub78910.herokuapp.com${pathname}`
+                    );
                   }}
                 >
                   <i className="fa fa-copy fa-x"></i> Copy link
@@ -169,6 +170,14 @@ const VideoPlayer = () => {
               <div>
                 <button className="SubscribeBtn">Subscribe</button>
               </div>
+            </div>
+            {/* comments */}
+            <div>
+              <Comments
+                currVideo={currVideo}
+                setCurrVideo={setCurrVideo}
+                videoId={videoId}
+              />
             </div>
           </div>
         </>

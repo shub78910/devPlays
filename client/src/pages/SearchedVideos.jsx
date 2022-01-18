@@ -17,7 +17,6 @@ const SearchedVideos = () => {
   const { pathname } = useLocation();
   const searchedText = pathname.split("/searchedVideos/")[1];
 
-  console.log(searchedText, "searchedText");
   useEffect(async () => {
     const response = await searchVideosFromDb(`${searchedText}`);
     setSearchedVideos(response.data.filteredVideos);

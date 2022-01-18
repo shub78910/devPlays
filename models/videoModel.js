@@ -5,14 +5,18 @@ const { Schema } = mongoose;
 
 const VideoSchema = new Schema({
   _id: String,
-  thumbnail: String,
   name: String,
   creator: String,
   date: String,
+  uploader: String,
   category: Array,
   likes: {
     type: Number,
     default: 0,
+  },
+  comments: {
+    type: Array,
+    default: [],
   },
 });
 
@@ -27,3 +31,11 @@ const addVideosToDB = () => {
 };
 
 export default addVideosToDB;
+
+// {
+//     "_id":"QtXby3twMmI",
+//     "name":"Coldplay - Adventure Of A Lifetime (Official Video)",
+//     "creator":"Coldplay",
+//     "date":"Nov 29, 2015",
+//     "catergory":["coldplay","music"]
+// }

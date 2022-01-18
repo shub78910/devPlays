@@ -52,6 +52,22 @@ export const VideoState = (props) => {
     }
   };
 
+  //add new video
+
+  const addNewVideo = async (newVidDetails) => {
+    try {
+      setLoader(true);
+      const video = await axios.put("/video/addNewVideo", newVidDetails);
+      setLoader(false);
+      setIsShowErrorMsg(false);
+      setChange(!change);
+      return video;
+    } catch (error) {
+      setIsShowErrorMsg(true);
+      console.log(error);
+      return error;
+    }
+  };
   const getVideos = async () => {
     try {
       setLoader(true);
@@ -61,6 +77,20 @@ export const VideoState = (props) => {
       setIsShowErrorMsg(false);
       setChange(!change);
       return videos;
+    } catch (error) {
+      setIsShowErrorMsg(true);
+      return {
+        message: "There is some problem with the server.",
+        error: error,
+        success: false,
+      };
+    }
+  };
+
+  const getVideoBasedOnId = async (videoId) => {
+    try {
+      const video = await axios.get(`/home/${videoId}`);
+      return video;
     } catch (error) {
       setIsShowErrorMsg(true);
       return {
@@ -188,12 +218,49 @@ export const VideoState = (props) => {
     }
   };
 
+  //add new comment
+  const addCommentToVideo = async (videoId, comment) => {
+    //body can never be text, it has to be objectttt
+    try {
+      const addedComment = await axios.put(
+        `/video/addComment/${videoId}/${userId}`,
+        { comment: comment }
+      );
+      setIsShowErrorMsg(false);
+      setChange(!change);
+      return addedComment;
+    } catch (error) {
+      setIsShowErrorMsg(true);
+      console.log(error);
+      return error;
+    }
+  };
+
+  //delete a comment
+
+  const deleteCommentToVideo = async (videoId, commentId) => {
+    try {
+      const deletedComment = await axios.put(
+        `/video/deleteComment/${videoId}/${commentId}`
+      );
+      setIsShowErrorMsg(false);
+      setChange(!change);
+      return deletedComment;
+    } catch (error) {
+      setIsShowErrorMsg(true);
+      console.log(error);
+      return error;
+    }
+  };
+
   return (
     <videoContext.Provider
       value={{
         signUp,
         signIn,
+        addNewVideo,
         getVideos,
+        getVideoBasedOnId,
         fetchedVids,
         likeVideos,
         userName,
@@ -212,6 +279,8 @@ export const VideoState = (props) => {
         searchedVideos,
         setSearchedVideos,
         searchVideosFromDb,
+        addCommentToVideo,
+        deleteCommentToVideo,
         loader,
       }}
     >

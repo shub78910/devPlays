@@ -23,6 +23,26 @@ router.get("/home", async (req, res) => {
   }
 });
 
+//get  videos based on id
+router.get("/home/:videoId", async (req, res) => {
+  const { videoId } = req.params;
+
+  try {
+    const video = await Video.findById(videoId);
+    if (video) {
+      return res.status(200).json({
+        success: true,
+        msg: "Video fetched from db",
+        video,
+      });
+    }
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: "There is some problem with the server." });
+  }
+});
+
 //get videos based on specific keywords:
 
 router.get("/search/:searchedText", async (req, res) => {
@@ -40,6 +60,44 @@ router.get("/search/:searchedText", async (req, res) => {
       msg: "Videos based on search input fetched from db",
       filteredVideos,
     });
+  } catch (error) {
+    return error;
+  }
+});
+
+//add a new video to db:
+router.put("/video/addNewVideo", async (req, res) => {
+  const { _id, category, name, creator, date, userName } = req.body;
+
+  try {
+    const videos = await Video.find();
+    let videoInDB = videos.find((video) => video._id === _id);
+
+    if (videoInDB) {
+      return res.status(201).json({ message: "Video already in DB" });
+    } else {
+      videos.push({
+        _id,
+        category: category,
+        name,
+        creator,
+        date,
+        comments: [],
+        likes: 0,
+        uploader: userName,
+      });
+
+      videos.forEach(async (video) => {
+        const NewVideo = new Video(video);
+        const savedVideo = await NewVideo.save();
+      });
+
+      return res.status(200).json({
+        success: true,
+        msg: "Added new video",
+        videos,
+      });
+    }
   } catch (error) {
     return error;
   }
@@ -247,6 +305,62 @@ router.put("/video/history/:videoId/:userId", async (req, res) => {
       new: true,
     });
     return res.status(200).json(updatedPost);
+  } catch (error) {
+    return error;
+  }
+});
+
+//add new comment
+router.put("/video/addComment/:videoId/:userId", async (req, res) => {
+  try {
+    const { videoId, userId } = req.params;
+    const { comment } = req.body;
+
+    const user = await User.findById(userId);
+    const video = await Video.findById(videoId);
+
+    if (!video) {
+      return res.json({
+        commentAdd: false,
+        message: "Video does not exist.",
+      });
+    } else {
+      video.comments.unshift({
+        user: user,
+        comment: comment,
+        commentId: new Date().getTime(),
+      });
+      const updatedPost = await Video.findByIdAndUpdate(videoId, video, {
+        new: true,
+      });
+      return res.status(200).json(updatedPost);
+    }
+  } catch (error) {
+    return error;
+  }
+});
+
+//delete a comment
+router.put("/video/deleteComment/:videoId/:commentId", async (req, res) => {
+  try {
+    const { videoId, commentId } = req.params;
+
+    const video = await Video.findById(videoId);
+    if (!video) {
+      return res.json({
+        commentAdd: false,
+        message: "Video does not exist.",
+      });
+    } else {
+      const filteredArr = video.comments.filter(
+        (item) => Number(item.commentId) !== Number(commentId)
+      );
+      video.comments = filteredArr;
+      const updatedPost = await Video.findByIdAndUpdate(videoId, video, {
+        new: true,
+      });
+      return res.status(200).json(updatedPost);
+    }
   } catch (error) {
     return error;
   }
