@@ -15,6 +15,9 @@
   height: 3rem;
   color: white;
 }
+.bottomNavBarWrapper {
+  display: none;
+}
 
 @media only screen and (max-width: 900px) {
   .navbarWrapper {
@@ -33,6 +36,7 @@
   }
 
   .bottomNavBarWrapper {
+    display: block;
     background-color: #191921 !important;
     overflow: hidden;
     position: fixed;
