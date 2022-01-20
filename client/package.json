@@ -8,7 +8,7 @@
       "target": "http://localhost:5000"
     },
     "/access/.*(_get)": {
-      "target": "http://i.ytimg.com/vi"
+      "target": "https://i.ytimg.com/vi"
     }
   },
 
