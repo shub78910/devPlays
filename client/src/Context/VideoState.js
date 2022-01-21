@@ -55,7 +55,7 @@ export const VideoState = (props) => {
   //validating the video id
 
   const validateVideoId = async (_id) => {
-    const url = `https://i.ytimg.com/vi/${_id}/0.jpg`;
+    const url = `http://i.ytimg.com/vi/${_id}/0.jpg`;
     const { status } = await fetch(url);
     return status;
   };
