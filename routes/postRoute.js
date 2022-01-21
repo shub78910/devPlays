@@ -3,7 +3,7 @@ const router = express.Router();
 import auth from "../middleware/auth.js";
 import { Video } from "../models/videoModel.js";
 import { User } from "../models/userSchema.js";
-import mongoose from "mongoose";
+import fetch from "node-fetch";
 
 //get all videos
 router.get("/home", async (req, res) => {
@@ -65,9 +65,20 @@ router.get("/search/:searchedText", async (req, res) => {
   }
 });
 
+//validate
+
+router.get("/video/addVideo/validateId/:videoId", async (req, res) => {
+  const { videoId } = req.params;
+
+  const url = `http://i.ytimg.com/vi/${videoId}/0.jpg`;
+  const { status } = await fetch(url);
+  return res.json({ status: status });
+});
+
 //add a new video to db:
 router.put("/video/addNewVideo", async (req, res) => {
   const { _id, category, name, creator, date, userName } = req.body;
+  console.log(_id, category, name, creator, date);
 
   try {
     const videos = await Video.find();
@@ -76,21 +87,25 @@ router.put("/video/addNewVideo", async (req, res) => {
     if (videoInDB) {
       return res.status(201).json({ message: "Video already in DB" });
     } else {
+      console.log("im here, ");
       videos.push({
-        _id,
+        _id: _id,
         category: category,
-        name,
-        creator,
-        date,
+        name: name,
+        creator: creator,
+        date: date,
         comments: [],
         likes: 0,
         uploader: userName,
       });
+      console.log("[pushed]");
 
       videos.forEach(async (video) => {
+        console.log("doing for loop");
         const NewVideo = new Video(video);
         const savedVideo = await NewVideo.save();
       });
+      console.log("done");
 
       return res.status(200).json({
         success: true,

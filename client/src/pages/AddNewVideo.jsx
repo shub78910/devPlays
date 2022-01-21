@@ -36,17 +36,14 @@ const AddNewVideo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form._id) {
-      console.log(form._id);
-      // //validating if the video is legit or no.
-
+    if (form._id && form.name && form.date && form.category && form.creator) {
       const isVideoValidStatus = await validateVideoId(form._id);
       console.log(isVideoValidStatus);
+
       if (isVideoValidStatus === 404) {
         toast.error("Invalid video ID");
         return;
       }
-      // //arghhh corsss
 
       let response = await addNewVideo(form);
       if (response.status === 200) {

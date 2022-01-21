@@ -55,9 +55,8 @@ export const VideoState = (props) => {
   //validating the video id
 
   const validateVideoId = async (_id) => {
-    const url = `http://i.ytimg.com/vi/${_id}/0.jpg`;
-    const { status } = await fetch(url);
-    return status;
+    const res = await axios.get(`/video/addVideo/validateId/${_id}`);
+    return res.data.status;
   };
 
   //add new video
