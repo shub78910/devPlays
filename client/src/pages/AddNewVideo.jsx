@@ -28,6 +28,10 @@ const AddNewVideo = () => {
         return el.trim();
       });
       setForm({ ...form, [e.target.name]: categoryArr });
+    } else if (e.target.name === "_id") {
+      let editedVideoId = e.target.value.split("=")[1];
+      console.log(editedVideoId);
+      setForm({ ...form, [e.target.name]: editedVideoId });
     } else {
       setForm({ ...form, [e.target.name]: e.target.value });
     }
@@ -82,13 +86,13 @@ const AddNewVideo = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Video ID (from YouTube)</Form.Label>
+            <Form.Label>Video link (from YouTube)</Form.Label>
             <Form.Control
               onChange={handleChange}
               className="addNewVidInputs"
               name="_id"
               type="_id"
-              placeholder="uMCSdgkdOJc"
+              placeholder="https://www.youtube.com/watch?v=jYdaQJzcAcw"
             />
           </Form.Group>
 
