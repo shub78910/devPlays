@@ -59,18 +59,12 @@ router.post("/login", async (req, res) => {
   try {
     const token = jwt.sign({ _id: user._id }, secret, { expiresIn: "1d" });
     return res
+      .header("authtoken", token)
       .status(201)
-      .header("authToken", token)
       .json({ token: token, message: "Succesfully logged in", user });
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
-router.get("/logout", auth, (req, res) => {
-  // console.log(req.headers.authtoken, "reqqq");
-  req.headers.authtoken = "";
-  // console.log(req.headers.authtoken, "reqqq");
-  return res.status(200).json({ message: "Logged out." });
-});
 export default router;

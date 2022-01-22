@@ -33,7 +33,10 @@ const SearchedVideos = () => {
           {" "}
           <div className="mainPage">
             {isShowErrorMsg ? (
-              <h1>There is an error, please try after sometime.</h1>
+              <h3>
+                There is an error, please try after sometime. Invalid/Expired
+                JWT token
+              </h3>
             ) : (
               <>
                 {searchedVideos?.length === 0 ? (

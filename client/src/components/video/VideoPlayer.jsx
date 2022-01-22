@@ -35,10 +35,12 @@ const VideoPlayer = () => {
     addToWatchLaterVideo,
     userFromDb,
     loader,
+    isShowErrorMsg,
   } = useContext(videoContext);
 
   useEffect(async () => {
     if (!jwttoken) navigate("/login");
+    if (isShowErrorMsg) navigate("/login");
     else {
       const response = await getVideoBasedOnId(videoId);
       setCurrVideo(response?.data.video);
@@ -51,6 +53,10 @@ const VideoPlayer = () => {
   useEffect(() => {
     setLikeCount(currVideo?.likes);
   }, [currVideo]);
+
+  useEffect(() => {
+    if (isShowErrorMsg) navigate("/404");
+  }, [isShowErrorMsg]);
 
   const isAddedToWatchLaterByUser = userFromDb?.data.user.watchlist.find(
     (video) => video._id === videoId

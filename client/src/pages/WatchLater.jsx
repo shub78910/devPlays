@@ -41,7 +41,10 @@ const WatchLater = () => {
             <div className="mainPage">
               <h1 style={{ textAlign: "center" }}>Watchlist</h1>
               {isShowErrorMsg ? (
-                <h1>There is an error, please try after sometime.</h1>
+                <h3>
+                  There is an error, please try after sometime. Invalid/Expired
+                  JWT token
+                </h3>
               ) : (
                 <div className="videoListWrapper">
                   {userFromDb?.data.user.watchlist.map((video) => {

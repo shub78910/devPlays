@@ -8,16 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 
 const Home = () => {
-  const {
-    getVideos,
-    fetchedVids,
-    jwttoken,
-    getUser,
-    userId,
-    isShowErrorMsg,
-    setIsShowErrorMsg,
-    loader,
-  } = useContext(videoContext);
+  const { getVideos, fetchedVids, jwttoken, isShowErrorMsg, loader } =
+    useContext(videoContext);
 
   const headers = {
     authToken: jwttoken,
@@ -41,7 +33,10 @@ const Home = () => {
         <>
           <div className="mainPage">
             {isShowErrorMsg ? (
-              <h1>There is an error, please try after sometime.</h1>
+              <h3>
+                There is an error, please try after sometime. Invalid/Expired
+                JWT token
+              </h3>
             ) : (
               <div className="videoListWrapper">
                 {fetchedVids.map((video) => {

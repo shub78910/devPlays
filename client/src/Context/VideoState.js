@@ -15,6 +15,10 @@ export const VideoState = (props) => {
 
   const [loader, setLoader] = useState(false);
 
+  const headers = {
+    authtoken: jwttoken,
+  };
+
   const signUp = async (form) => {
     try {
       setLoader(true);
@@ -55,7 +59,9 @@ export const VideoState = (props) => {
   //validating the video id
 
   const validateVideoId = async (_id) => {
-    const res = await axios.get(`/video/addVideo/validateId/${_id}`);
+    const res = await axios.get(`/video/addVideo/validateId/${_id}`, {
+      headers: headers,
+    });
     return res.data.status;
   };
 
@@ -64,7 +70,9 @@ export const VideoState = (props) => {
   const addNewVideo = async (newVidDetails) => {
     try {
       setLoader(true);
-      const video = await axios.put("/video/addNewVideo", newVidDetails);
+      const video = await axios.put("/video/addNewVideo", newVidDetails, {
+        headers: headers,
+      });
       setLoader(false);
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -96,10 +104,11 @@ export const VideoState = (props) => {
 
   const getVideoBasedOnId = async (videoId) => {
     try {
-      const video = await axios.get(`/home/${videoId}`);
+      const video = await axios.get(`/home/${videoId}`, { headers: headers });
       return video;
     } catch (error) {
       setIsShowErrorMsg(true);
+      console.log("tru he via");
       return {
         message: "There is some problem with the server.",
         error: error,
@@ -129,7 +138,7 @@ export const VideoState = (props) => {
   const getUser = async (userId) => {
     if (userId !== null) {
       try {
-        const user = await axios.get(`/user/${userId}`);
+        const user = await axios.get(`/user/${userId}`, { headers: headers });
         setUserFromDb(user);
         setIsShowErrorMsg(false);
         return user;
@@ -149,7 +158,9 @@ export const VideoState = (props) => {
   //like a video
   const likeVideos = async (videoId) => {
     try {
-      const likedVideo = await axios.put(`/video/like/${videoId}/${userId}`);
+      const likedVideo = await axios.put(`/video/like/${videoId}/${userId}`, {
+        headers: headers,
+      });
       setIsShowErrorMsg(false);
       setChange(!change);
       return likedVideo;
@@ -164,7 +175,8 @@ export const VideoState = (props) => {
   const addToWatchLaterVideo = async (videoId) => {
     try {
       const addedToWatchLaterVideo = await axios.put(
-        `/video/watchLater/${videoId}/${userId}`
+        `/video/watchLater/${videoId}/${userId}`,
+        { headers: headers }
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -181,7 +193,8 @@ export const VideoState = (props) => {
   const makeNewPlaylist = async (playlistName) => {
     try {
       const response = await axios.put(
-        `/video/newPlayList/${playlistName}/${userId}`
+        `/video/newPlayList/${playlistName}/${userId}`,
+        { headers: headers }
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -197,7 +210,8 @@ export const VideoState = (props) => {
   const addVideoToPlaylist = async (playListName, videoId) => {
     try {
       const addedToPlaylistVideo = await axios.put(
-        `/video/playlist/${playListName}/${videoId}/${userId}`
+        `/video/playlist/${playListName}/${videoId}/${userId}`,
+        { headers: headers }
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -231,7 +245,8 @@ export const VideoState = (props) => {
     try {
       const addedComment = await axios.put(
         `/video/addComment/${videoId}/${userId}`,
-        { comment: comment }
+        { comment: comment },
+        { headers: headers }
       );
       setIsShowErrorMsg(false);
       setChange(!change);
@@ -248,7 +263,8 @@ export const VideoState = (props) => {
   const deleteCommentToVideo = async (videoId, commentId) => {
     try {
       const deletedComment = await axios.put(
-        `/video/deleteComment/${videoId}/${commentId}`
+        `/video/deleteComment/${videoId}/${commentId}`,
+        { headers: headers }
       );
       setIsShowErrorMsg(false);
       setChange(!change);

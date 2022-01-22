@@ -1,20 +1,18 @@
 import jwt from "jsonwebtoken";
 
+let secret = "secret";
 let auth = (req, res, next) => {
-  let secret = "secret";
-
-  const token = req.header("authToken");
-  let updatedToken = token.replace(/['"]+/g, "");
-
-  if (!updatedToken) return res.status(401).json({ message: "Access denied." });
+  const token = req.header("authtoken");
+  if (!token) return res.status(401).json({ message: "Access denied." });
 
   try {
-    const verified = jwt.verify(updatedToken, secret);
+    const verified = jwt.verify(token, secret);
     req.user = verified;
     next();
   } catch (error) {
     console.log(error.message);
-    res.status(400).json({ message: "Invalid token" });
+    return res.status(400).json({ message: "Invalid token" });
   }
 };
+
 export default auth;

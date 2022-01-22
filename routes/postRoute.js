@@ -24,9 +24,8 @@ router.get("/home", async (req, res) => {
 });
 
 //get  videos based on id
-router.get("/home/:videoId", async (req, res) => {
+router.get("/home/:videoId", auth, async (req, res) => {
   const { videoId } = req.params;
-
   try {
     const video = await Video.findById(videoId);
     if (video) {
@@ -120,7 +119,7 @@ router.put("/video/addNewVideo", async (req, res) => {
 
 //get user:
 
-router.get("/user/:userId", async (req, res) => {
+router.get("/user/:userId", auth, async (req, res) => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId);
@@ -301,9 +300,8 @@ router.put(
 
 //history
 router.put("/video/history/:videoId/:userId", async (req, res) => {
+  const { videoId, userId } = req.params;
   try {
-    const { videoId, userId } = req.params;
-
     const user = await User.findById(userId);
     const video = await Video.findById(videoId);
 
@@ -319,8 +317,9 @@ router.put("/video/history/:videoId/:userId", async (req, res) => {
     const updatedPost = await User.findByIdAndUpdate(userId, user, {
       new: true,
     });
-    return res.status(200).json(updatedPost);
+    return res.status(200).json({ message: "added to history" });
   } catch (error) {
+    console.log(videoId, userId);
     return error;
   }
 });
