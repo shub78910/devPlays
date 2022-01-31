@@ -22,4 +22,4 @@ I've used JWT based auth, bcrypt for password encryption, and context API.
 
 Deployed link: https://devplays-shub78910.herokuapp.com
 
-[![Instagram](https://img.shields.io/static/v1.svg?label=follow&message=@shub789&color=grey&logo=instagram&style=flat&logoColor=white&colorA=blue)](https://www.instagram.com/shub789/) [![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@Shubham&color=grey&logo=linkedin&style=flat&logoColor=white&colorA=blue)](https://www.linkedin.com/in/shubham-hirakki-39186619b/)
+[![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@Shubham&color=grey&logo=linkedin&style=flat&logoColor=white&colorA=blue)](https://www.linkedin.com/in/shubham-hirakki-39186619b/)
