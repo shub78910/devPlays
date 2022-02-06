@@ -22,4 +22,7 @@ I've used JWT based auth, bcrypt for password encryption, and context API.
 
 Deployed link: https://devplays-shub78910.herokuapp.com
 
+https://www.linkedin.com/posts/shubham-hirakki-39186619b_webdevelopment-reactjs-mongodb-activity-6890660000365211648-lB9i
+
+
 [![LinkedIn](https://img.shields.io/static/v1.svg?label=connect&message=@Shubham&color=grey&logo=linkedin&style=flat&logoColor=white&colorA=blue)](https://www.linkedin.com/in/shubham-hirakki-39186619b/)
