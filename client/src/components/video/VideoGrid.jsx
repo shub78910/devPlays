@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/video.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import videoContext from "../../Context/videoContext";
 import { toast, ToastContainer } from "react-toastify";
@@ -37,7 +37,10 @@ const VideoGrid = ({ video }) => {
           }}
         >
           <div className="videoGrid" onClick={addVideoToHistory}>
-            <img src={`https://i.ytimg.com/vi/${video._id}/0.jpg`} />
+            <img
+              alt="thumbnail"
+              src={`https://i.ytimg.com/vi/${video._id}/0.jpg`}
+            />
             <strong className="mt-3">{video.name}</strong>
           </div>
         </Link>

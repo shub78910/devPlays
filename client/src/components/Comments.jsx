@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import videoContext from "../Context/videoContext";
 import "../styles/comments.css";
@@ -67,10 +67,10 @@ const Comments = ({ currVideo, setCurrVideo, videoId }) => {
           {/* rendering comments  */}
           {currVideo?.comments?.length !== 0 && (
             <>
-              {currVideo.comments?.map((comment) => {
+              {currVideo.comments?.map((comment, id) => {
                 return (
                   <>
-                    <div className="singleComment">
+                    <div key={id} className="singleComment">
                       <div>
                         <strong>{comment.user.fullName}: </strong>{" "}
                         <p>{comment.comment}</p>

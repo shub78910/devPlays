@@ -1,18 +1,11 @@
-import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import videoContext from "../Context/videoContext";
 
 function AddPlaylistModal(props) {
-  const {
-    makeNewPlaylist,
-    userFromDb,
-    addVideoToPlaylist,
-    change,
-    getUser,
-    userId,
-  } = useContext(videoContext);
+  const { makeNewPlaylist, userFromDb, addVideoToPlaylist, getUser, userId } =
+    useContext(videoContext);
 
   // useEffect(() => {
   //   getUser(userId);
@@ -65,7 +58,7 @@ function AddPlaylistModal(props) {
 
           {playlists?.map((item) => {
             return (
-              <div onChange={() => updateVideoToPlaylist(item)}>
+              <div key={item} onChange={() => updateVideoToPlaylist(item)}>
                 <input
                   checked={isChecked(item)}
                   //make dynamiccc

@@ -14,7 +14,6 @@ const WatchLater = () => {
     userId,
     jwttoken,
     isShowErrorMsg,
-    setIsShowErrorMsg,
     change,
     loader,
   } = useContext(videoContext);
@@ -43,7 +42,7 @@ const WatchLater = () => {
               {isShowErrorMsg ? (
                 <h3>
                   There is an error, please try after sometime. Invalid/Expired
-                  JWT token
+                  JWT token. Please Login again.
                 </h3>
               ) : (
                 <div className="videoListWrapper">

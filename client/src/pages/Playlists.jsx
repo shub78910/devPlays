@@ -1,20 +1,12 @@
 import React, { useContext } from "react";
 import "../styles/video.css";
 import videoContext from "../Context/videoContext";
-import VideoGrid from "../components/video/VideoGrid";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EmptyList from "../components/EmptyList";
 const Playlist = () => {
-  const {
-    getUser,
-    userFromDb,
-    userId,
-    jwttoken,
-    isShowErrorMsg,
-    setIsShowErrorMsg,
-    change,
-  } = useContext(videoContext);
+  const { getUser, userFromDb, userId, jwttoken, isShowErrorMsg, change } =
+    useContext(videoContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (!jwttoken) navigate("/login");
@@ -50,9 +42,11 @@ const Playlist = () => {
                       pathname: `/playlists/${playlistName}`,
                       state: { fromDashboard: true },
                     }}
+                    key={playlistName}
                   >
                     <div className="videoGrid">
                       <img
+                        alt="playlist"
                         src={`https://i.ytimg.com/vi/${userFromDb?.data?.user?.playlist[playlistName][0]?._id}/0.jpg`}
                       />
                       <br />

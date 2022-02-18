@@ -1,26 +1,19 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useContext } from "react";
 import VideoGrid from "../components/video/VideoGrid";
 import "../styles/video.css";
 import videoContext from "../Context/videoContext";
-import { useNavigate } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 
 const Home = () => {
-  const { getVideos, fetchedVids, jwttoken, isShowErrorMsg, loader } =
+  const { getVideos, fetchedVids, isShowErrorMsg, loader } =
     useContext(videoContext);
 
-  const headers = {
-    authToken: jwttoken,
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  };
-
-  const navigate = useNavigate();
-
-  useEffect(async () => {
-    getVideos();
+  useEffect(() => {
+    const temp = async () => {
+      getVideos();
+    };
+    temp();
   }, []);
 
   return (

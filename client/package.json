@@ -21,8 +21,6 @@
     "react-toastify": "^8.1.0",
     "redux": "^4.1.2",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.4.0",
-    "responsive-react-js-navbar": "^1.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

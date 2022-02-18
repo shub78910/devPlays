@@ -22,14 +22,12 @@ const VideoPlayer = () => {
   const [isLikeVideo, setIsLikeVideo] = useState(false);
   const [currVideo, setCurrVideo] = useState([]);
   const [isAddToWatchLater, setIsAddToWatchLater] = useState(false);
-  const [isAddToPlaylist, setIsAddToPlaylist] = useState(false);
   const [likeLoader, setLikeLoader] = useState(false);
 
   const [modalShow, setModalShow] = useState(false);
 
   const {
     jwttoken,
-    getVideos,
     getVideoBasedOnId,
     likeVideos,
     addToWatchLaterVideo,
@@ -38,16 +36,19 @@ const VideoPlayer = () => {
     isShowErrorMsg,
   } = useContext(videoContext);
 
-  useEffect(async () => {
-    if (!jwttoken) navigate("/login");
-    if (isShowErrorMsg) navigate("/login");
-    else {
-      const response = await getVideoBasedOnId(videoId);
-      setCurrVideo(response?.data.video);
+  useEffect(() => {
+    const temp = async () => {
+      if (!jwttoken) navigate("/login");
+      if (isShowErrorMsg) navigate("/login");
+      else {
+        const response = await getVideoBasedOnId(videoId);
+        setCurrVideo(response?.data.video);
 
-      if (isAddedToWatchLaterByUser !== undefined) setIsAddToWatchLater(true);
-      if (isLikedByUser !== undefined) setIsLikeVideo(true);
-    }
+        if (isAddedToWatchLaterByUser !== undefined) setIsAddToWatchLater(true);
+        if (isLikedByUser !== undefined) setIsLikeVideo(true);
+      }
+    };
+    temp();
   }, [userFromDb]);
 
   useEffect(() => {
