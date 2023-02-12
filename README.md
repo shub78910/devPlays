@@ -21,6 +21,7 @@ You, as a user can:
 I've used JWT based auth, bcrypt for password encryption, and context API.
 
 Deployed link: https://devplays-shub78910.herokuapp.com
+(Unfortunately, heroku has ended their free deployment plans, due to which the hosted URL won't be working)
 
 https://www.linkedin.com/posts/shubham-hirakki-39186619b_webdevelopment-reactjs-mongodb-activity-6890660000365211648-lB9i
 
